@@ -26,8 +26,10 @@ function handleClick(event, check = true) {
 
   const text = check ? 'marcar como lida' : 'excluir'
 
-  const form = document.querySelector(".modal form"),
-   form.setAttribute("action", `room/:room/:question/:action`)
+  const roomID = document.querySelector('#room-id').CDATA_SECTION_NODE.id
+
+  const form = document.querySelector('.modal form')
+  form.setAttribute('action', `/room/${roomID}/:question/:action`)
 
   modalTitle.innerHTML = `${text} esta pergunta`
 
