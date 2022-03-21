@@ -6,10 +6,7 @@
   "scripts": {
     "start": "nodemon src/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vitor0slvr/rocket.Q.git"
-  },
+  "repository": "git+https://github.com/vitor0slvr/rocket.Q.git",
   "keywords": [],
   "author": "Vitor Silveira",
   "license": "ISC",
@@ -19,7 +16,10 @@
   "homepage": "https://github.com/vitor0slvr/rocket.Q#readme",
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "sqlite": "^4.0.25",
+    "sqlite3": "^5.0.2",
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
