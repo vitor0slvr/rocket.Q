@@ -4,7 +4,8 @@
   "description": "pagina para perguntas anonimas",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "init-db": "node src/db/init.js"
   },
   "repository": "git+https://github.com/vitor0slvr/rocket.Q.git",
   "keywords": [],
