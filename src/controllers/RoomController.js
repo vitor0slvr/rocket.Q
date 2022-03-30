@@ -17,7 +17,7 @@ module.exports = {
 
       // verificar se o numero existe
 
-      const roomsExistsIds = await db.run('SELECT id FROM rooms')
+      const roomsExistsIds = await db.all('SELECT id FROM rooms')
 
       isRoom = roomsExistsIds.some(roomsExistsId => roomsExistsId === roomId)
 
