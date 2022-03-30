@@ -5,7 +5,10 @@ module.exports = {
     const db = await Database()
     const pass = req.body.password
     let roomId
-    let isRoom = false
+    let isRoom = true
+
+    console.log(roomsExistsIds)
+
     while (isRoom) {
       // gera o numero da sala
 
@@ -22,7 +25,7 @@ module.exports = {
       isRoom = roomsExistsIds.some(roomsExistsId => roomsExistsId === roomId)
 
       if (!isRoom) {
-        // isnere a sala no banco
+        // insere a sala no banco
         await db.run(` INSERT INTO rooms(
           id,
           pass
