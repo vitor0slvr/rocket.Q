@@ -4,37 +4,37 @@ module.exports = {
   async create(req, res) {
     const db = await Database()
     const pass = req.body.password
-    let roomId
-    let isRoom = false
-    while (isRoom) {
-      // gera o numero da sala
 
+    let roomId
+    let isRoom = true
+
+    while (isRoom) {
       for (var i = 0; i < 6; i++) {
         i == 0
           ? (roomId = Math.floor(Math.random() * 10).toString())
           : (roomId += Math.floor(Math.random() * 10).toString())
       }
 
-      // verificar se o numero existe
-
-      const roomsExistsIds = await db.run('SELECT id FROM rooms')
+      const roomsExistsIds = await db.all('SELECT id FROM rooms')
 
       isRoom = roomsExistsIds.some(roomsExistsId => roomsExistsId === roomId)
 
       if (!isRoom) {
-        // isnere a sala no banco
-        await db.run(` INSERT INTO rooms(
-          id,
-          pass
-    
-        ) VALUES (
-          ${parseInt(roomId)},
-          ${pass}
-        )`)
+        const query = `
+          insert into rooms (
+            id,
+            pass
+          ) values (
+            ${parseInt(roomId)},
+            '${pass}'
+          )
+        `
+
+        await db.run(query)
       }
     }
 
-    await db.close(``)
+    await db.close()
 
     res.redirect(`/room/${roomId}`)
   }
