@@ -5,6 +5,7 @@ module.exports = {
     const db = await Database()
     const pass = req.body.password
 
+    // gera o numero da sala
     let roomId
     let isRoom = true
 
@@ -15,22 +16,21 @@ module.exports = {
           : (roomId += Math.floor(Math.random() * 10).toString())
       }
 
+      // verificar se o numero existe
       const roomsExistsIds = await db.all('SELECT id FROM rooms')
 
       isRoom = roomsExistsIds.some(roomsExistsId => roomsExistsId === roomId)
 
       if (!isRoom) {
-        const query = `
-          insert into rooms (
-            id,
-            pass
-          ) values (
-            ${parseInt(roomId)},
-            '${pass}'
-          )
-        `
-
-        await db.run(query)
+        // insere a sala no banco
+        await db.run(` INSERT INTO rooms(
+          id,
+          pass
+    
+        ) VALUES (
+          ${parseInt(roomId)},
+          ${pass}
+        )`)
       }
     }
 
